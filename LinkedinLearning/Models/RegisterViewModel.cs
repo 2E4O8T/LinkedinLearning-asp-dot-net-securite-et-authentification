@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace LinkedinLearning.Models
 {
@@ -14,5 +17,12 @@ namespace LinkedinLearning.Models
         [Display(Name = "Mot de passe")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Display(Name = "Votre rôle")]
+        public int Age { get; set; }
+        public string RoleSelected { get; set; }
+        public List<SelectListItem> Roles { get; }
+            = Role.Roles
+                .Select ( role => new SelectListItem { Value = role, Text = role })
+            .ToList ();
     }
 }

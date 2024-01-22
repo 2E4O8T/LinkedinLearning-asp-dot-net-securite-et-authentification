@@ -26,6 +26,14 @@
         <label asp-for="Password"></label>
         <input asp-for="Password" />
     </div>
+    <div>
+        <label asp-for="Age"></label>
+        <input asp-for="Age" />
+    </div>
+    <div>
+        <label asp-for="RoleSelected"></label>
+        <select asp-for="RoleSelected" asp-items ="Model.Roles"></select>
+    </div>
 
     <button type ="submit">Enregistrement</button>
 </form>

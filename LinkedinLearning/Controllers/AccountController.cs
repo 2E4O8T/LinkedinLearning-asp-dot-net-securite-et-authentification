@@ -1,6 +1,7 @@
 ﻿using LinkedinLearning.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace LinkedinLearning.Controllers
@@ -18,7 +19,7 @@ namespace LinkedinLearning.Controllers
 
         public IActionResult Register()
         {
-            return View();
+            return View(new RegisterViewModel());
         }
 
         [HttpPost]
@@ -30,27 +31,45 @@ namespace LinkedinLearning.Controllers
                 return View(registerVM);
             }
 
-            var result = await this.userManager.CreateAsync(new User
+            var user = new User
             {
                 Email = registerVM.Email,
                 UserName = registerVM.Email,
                 FirstName = registerVM.FirstName,
                 LastName = registerVM.LastName
-            }, registerVM.Password);
+            };  /*, registerVM.Password)*/
+
+            var result = await userManager.CreateAsync(user, registerVM.Password);
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                var resultRole = await userManager.AddToRoleAsync(user, registerVM.RoleSelected);
+
+                if (resultRole.Succeeded)
+                {
+                    await userManager.AddClaimAsync(user, new Claim("Age", registerVM.Age.ToString()));
+                    
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError(item.Code, item.Description);
+                    }
+
+                    return View(registerVM);
+                }
             }
             else
             {
-                foreach (var item in result.Errors)
+                foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(item.Code, item.Description);
+                    ModelState.AddModelError(string.Empty, error.Description);
                 }
+
+                return View(registerVM);
             }
-            
-            return View(registerVM);
         }
 
         public IActionResult Login()
@@ -67,7 +86,7 @@ namespace LinkedinLearning.Controllers
                 return View(loginVM);
             }
 
-            var result = await this.signInManager.PasswordSignInAsync(
+            var result = await signInManager.PasswordSignInAsync(
                 userName: loginVM.Email,
                 password: loginVM.Password,
                 isPersistent: true,
@@ -84,6 +103,18 @@ namespace LinkedinLearning.Controllers
 
                 return View(loginVM);
             }
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+
+            return RedirectToAction("Login");
         }
     }
 }
