@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedinLearning", "LinkedinLearning\LinkedinLearning.csproj", "{4436EA44-DF13-4053-84C2-0D2A2EB27491}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedinLearning", "LinkedinLearning\LinkedinLearning.csproj", "{4436EA44-DF13-4053-84C2-0D2A2EB27491}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{F3812040-B68E-4C15-85FF-CF170CCFCC1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Client", "IdentityServer.Client\IdentityServer.Client.csproj", "{D85CDA45-797E-4101-A14A-25FCC4A4FA7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{4436EA44-DF13-4053-84C2-0D2A2EB27491}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4436EA44-DF13-4053-84C2-0D2A2EB27491}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4436EA44-DF13-4053-84C2-0D2A2EB27491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3812040-B68E-4C15-85FF-CF170CCFCC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3812040-B68E-4C15-85FF-CF170CCFCC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3812040-B68E-4C15-85FF-CF170CCFCC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3812040-B68E-4C15-85FF-CF170CCFCC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85CDA45-797E-4101-A14A-25FCC4A4FA7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85CDA45-797E-4101-A14A-25FCC4A4FA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85CDA45-797E-4101-A14A-25FCC4A4FA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85CDA45-797E-4101-A14A-25FCC4A4FA7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
